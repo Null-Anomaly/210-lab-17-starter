@@ -24,6 +24,7 @@ int main() {
         int tmp_val = rand() % 100;
         Node *newVal = new Node;
         
+        addToFront(head, tmp_val);
         /* adds node at head
         if (!head) { // if this is the first node, it's the new head
             head = newVal;
