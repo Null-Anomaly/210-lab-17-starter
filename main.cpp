@@ -9,6 +9,11 @@ struct Node {
 };
 
 void output(Node *);
+void insert(Node *, int);
+void deleteNode(Node *, int);
+void deleteList(Node *);
+void addToEnd(Node *, int);
+void addToFront(Node *, int);
 
 int main() {
     Node *head = nullptr;
@@ -19,7 +24,7 @@ int main() {
         int tmp_val = rand() % 100;
         Node *newVal = new Node;
         
-        // adds node at head
+        /* adds node at head
         if (!head) { // if this is the first node, it's the new head
             head = newVal;
             newVal->next = nullptr;
@@ -29,7 +34,7 @@ int main() {
             newVal->next = head;
             newVal->value = tmp_val;
             head = newVal;
-        }
+        }*/
     }
     output(head);
 
@@ -59,7 +64,8 @@ int main() {
     }
     output(head);
 
-    // insert a node
+    insert(head, 10000);
+    /*insert a node
     current = head;
     cout << "After which node to insert 10000? " << endl;
     count = 1;
@@ -84,7 +90,7 @@ int main() {
     newnode->value = 10000;
     newnode->next = current;
     prev->next = newnode;
-    output(head);
+    output(head);*/
 
     // deleting the linked list
     current = head;
@@ -112,3 +118,52 @@ void output(Node * hd) {
     }
     cout << endl;
 }
+
+void insert(Node * hd, int val) 
+{
+    // insert a node
+    Node * current = hd;
+    Node * prev = hd;
+    int entry;
+    cout << "After which node to insert 10000? " << endl;
+    int count = 1;
+    while (current) {
+        cout << "[" << count++ << "] " << current->value << endl;
+        current = current->next;
+    }
+    cout << "Choice --> ";
+    cin >> entry;
+
+    current = hd;
+    prev = hd;
+    for (int i = 0; i < (entry); i++)
+        if (i == 0)
+            current = current->next;
+        else {
+            current = current->next;
+            prev = prev->next;
+        }
+    //at this point, insert a node between prev and current
+    Node * newnode = new Node;
+    newnode->value = 10000;
+    newnode->next = current;
+    prev->next = newnode;
+    output(hd);
+}
+
+//adds node at head
+void addToFront(Node * head, int tmp_val)
+{
+    Node *newVal = new Node;
+    if (!head) { // if this is the first node, it's the new head
+            head = newVal;
+            newVal->next = nullptr;
+            newVal->value = tmp_val;
+        }
+        else { // its a second or subsequent node; place at the head
+            newVal->next = head;
+            newVal->value = tmp_val;
+            head = newVal;
+        }
+}
+        
